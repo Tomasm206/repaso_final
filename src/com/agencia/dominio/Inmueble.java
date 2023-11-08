@@ -5,6 +5,7 @@ public abstract class Inmueble{
     private long valorVenta;
     private long valorArriendo;
     protected boolean arrendado;
+    protected boolean construir;
 
     @Override
     public String toString() {
