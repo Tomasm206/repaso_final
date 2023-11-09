@@ -11,11 +11,10 @@ public class Veterinaria {
     public static final int MESES_HEMBRA = 18;
     private String nombre;
     public List<Mascota> pacientes = new ArrayList<>();
-
     public Mascota revisarMascota(String nombre, String sexo, int edad){
         Mascota mascota;
         if ((sexo.equals("macho") && edad > MESES_MACHO)
-                || (sexo.equals("hembra") && edad > MESES_HEMBRA)){
+                || (sexo.equals("chica") && edad > MESES_HEMBRA)){
             mascota = new MascotaApta(nombre,sexo,edad);
         }else {
             mascota = new MascotaNoApta(nombre,sexo,edad);

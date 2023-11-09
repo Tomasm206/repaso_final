@@ -2,6 +2,8 @@ package com.agencia.dominio;
 
 import com.agencia.dominio.exeptions.InmuebleArrendadoException;
 import com.agencia.dominio.exeptions.InmuebleNoArrendableException;
+import com.agencia.dominio.exeptions.InmuebleSinLicenciaException;
+import com.agencia.dominio.exeptions.RecientementeRenovadoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,5 +66,19 @@ public class Agencia {
         }
 
         return arrendados;
+    }
+
+    ////////////////////////////////////////////////
+    public boolean construccion(Inmueble inmueble){
+        if (!inmueble.construir && inmueble instanceof Construible){
+            ((Construible) inmueble).construir();
+            return true;
+        }else{
+            if (inmueble instanceof Construible){
+                throw new RecientementeRenovadoException();
+            }else {
+                throw new InmuebleSinLicenciaException();
+            }
+        }
     }
 }

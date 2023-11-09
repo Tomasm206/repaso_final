@@ -10,9 +10,9 @@ public class AppVeterinaria {
         Veterinaria veterinaria = new Veterinaria();
         veterinaria.revisarMascota("guaba","macho",15);
         veterinaria.revisarMascota("max","macho",9);
-        veterinaria.revisarMascota("luna","hembra",22);
-        veterinaria.revisarMascota("copito","hembra",15);
-        veterinaria.revisarMascota("moly","hembra",32);
+        veterinaria.revisarMascota("luna","macho",22);
+        veterinaria.revisarMascota("copito","chica",15);
+        veterinaria.revisarMascota("moly","chica",32);
 
         veterinaria.operarATodos();
 
