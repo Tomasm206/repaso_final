@@ -78,16 +78,21 @@ public class Agencia {
         }
     }
     public boolean renovar(Inmueble inmueble){
-        if (!inmueble.arrendado && !inmueble.construir){
-            ((Construible) inmueble).construir();
-            return true;
-        }else {
-            if (inmueble.arrendado){
-                throw new InmuebleArrendadoNoRenobableException();
+        try {
+            if (!inmueble.arrendado && !inmueble.construir){
+                ((Construible) inmueble).construir();
+                return true;
             }else {
-                throw new RecientementeRenovadoException();
+                if (inmueble instanceof Arrendable){
+                    throw new InmuebleArrendadoNoRenobableException();
+                }else {
+                    throw new RecientementeRenovadoException();
+                }
             }
+        } catch (InmuebleNoArrendableException e) {
+            System.out.println("Error: Inmueble no arrendable");
         }
+        return false;
     }
     public boolean renovarParaArrendar(Inmueble inmueble){
         if (!inmueble.arrendado && !inmueble.construir){
