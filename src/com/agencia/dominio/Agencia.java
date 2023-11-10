@@ -1,9 +1,6 @@
 package com.agencia.dominio;
 
-import com.agencia.dominio.exeptions.InmuebleArrendadoException;
-import com.agencia.dominio.exeptions.InmuebleNoArrendableException;
-import com.agencia.dominio.exeptions.InmuebleSinLicenciaException;
-import com.agencia.dominio.exeptions.RecientementeRenovadoException;
+import com.agencia.dominio.exeptions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +61,6 @@ public class Agencia {
                 arrendados.add(inmueble);
             }
         }
-
         return arrendados;
     }
 
@@ -78,6 +74,18 @@ public class Agencia {
                 throw new RecientementeRenovadoException();
             }else {
                 throw new InmuebleSinLicenciaException();
+            }
+        }
+    }
+    public boolean renovar(Inmueble inmueble){
+        if (!inmueble.arrendado && !inmueble.construir){
+            ((Construible) inmueble).construir();
+            return true;
+        }else {
+            if (inmueble.arrendado){
+                throw new InmuebleArrendadoNoRenobableException();
+            }else {
+                throw new RecientementeRenovadoException();
             }
         }
     }
