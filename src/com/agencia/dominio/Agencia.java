@@ -89,4 +89,17 @@ public class Agencia {
             }
         }
     }
+    public boolean renovarParaArrendar(Inmueble inmueble){
+        if (!inmueble.arrendado && !inmueble.construir){
+            ((Construible) inmueble).construir();
+            ((Arrendable) inmueble).arrendar();
+            return true;
+        }else {
+            if (inmueble.arrendado){
+                throw new InmuebleArrendadoException();
+            }else {
+                throw new RecientementeRenovadoException();
+            }
+        }
+    }
 }
